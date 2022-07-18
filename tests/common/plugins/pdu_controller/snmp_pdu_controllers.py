@@ -17,7 +17,7 @@ class snmpPduController(PduControllerBase):
     """
     PDU Controller class for SNMP conrolled PDUs - 'Sentry Switched CDU' and 'APC Web/SNMP Management Card'
 
-    This class implements the interface defined in PduControllerBase class for SNMP conrtolled PDU type 
+    This class implements the interface defined in PduControllerBase class for SNMP conrtolled PDU type
     'Sentry Switched CDU' and 'APC Web/SNMP Management Card'
     """
 
@@ -34,16 +34,26 @@ class snmpPduController(PduControllerBase):
         snmp_auth = cmdgen.CommunityData(self.snmp_rocommunity)
         errorIndication, errorStatus, errorIndex, varBinds = cmdGen.getCmd(
             snmp_auth,
-            cmdgen.UdpTransportTarget((self.controller, 161), timeout=5.0),
+            cmdgen.UdpTransportTarget((self.controller, self.snmp_port), timeout=5.0),
             cmdgen.MibVariable(pSYSDESCR)
             )
         if errorIndication:
-            logging.info("Failed to get pdu controller type, exception: " + str(errorIndication))
+            logging.info("Failed to get pdu controller type, exception: " + str(errorIndication) + ", try snmp port 512" )
+            self.snmp_port=512
+            errorIndication, errorStatus, errorIndex, varBinds = cmdGen.getCmd(
+                snmp_auth,
+                cmdgen.UdpTransportTarget((self.controller, self.snmp_port), timeout=5.0),
+                cmdgen.MibVariable(pSYSDESCR)
+                )
+            if errorIndication:
+                logging.info("Failed to get pdu controller type, exception: " + str(errorIndication))
+
         for oid, val in varBinds:
             current_oid = oid.prettyPrint()
             current_val = val.prettyPrint()
             if current_oid == SYSDESCR:
                 pdu = current_val
+        logging.info("get_pdu_controller_type")
         if pdu is None:
             self.pduType = None
             return
@@ -57,6 +67,9 @@ class snmpPduController(PduControllerBase):
             self.pduType = 'Emerson'
         if 'Vertiv Geist Upgradeable PDU' in pdu:
             self.pduType = 'Vertiv'
+        if 'SmartPower 8H Remote Power Control' in pdu:
+            self.pduType = 'SmartPower'
+            logging.info("SmartPower")
         return
 
     def pduCntrlOid(self):
@@ -85,6 +98,10 @@ class snmpPduController(PduControllerBase):
         VERTIV_PORT_STATUS_BASE_OID = "1.3.6.1.4.1.21239.5.2.3.5.1.4"
         VERTIV_PORT_CONTROL_BASE_OID = "1.3.6.1.4.1.21239.5.2.3.5.1.6"
         VERTIV_PORT_POWER_BASE_OID = "1.3.6.1.4.1.21239.5.2.3.6.1.12"
+        # MIB OID for 'SmartPower 8H Remote Power Control'
+        SP_PORT_STATUS_BASE_OID = "1.3.6.1.4.1.26104.1.1.1.5.1"
+        SP_PORT_CONTROL_BASE_OID = "1.3.6.1.4.1.26104.1.1.1.5.1"
+
         self.STATUS_ON = "1"
         self.STATUS_OFF = "0"
         self.CONTROL_ON = "1"
@@ -122,6 +139,31 @@ class snmpPduController(PduControllerBase):
             self.CONTROL_OFF = "4"
             self.has_lanes = False
             self.max_lanes = 1
+        elif self.pduType == "SmartPower":
+            self.PORT_STATUS_BASE_OID    = SP_PORT_STATUS_BASE_OID
+            self.PORT_CONTROL_BASE_OID   = SP_PORT_CONTROL_BASE_OID
+            self.index_status_map = {
+                '.1': '.8',
+                '.2': '.9',
+                '.3': '.10',
+                '.4': '.11',
+                '.5': '.12',
+                '.6': '.13',
+                '.7': '.14',
+                '.8': '.15'
+            }
+            self.index_control_map = {
+                '.1': '.24',
+                '.2': '.25',
+                '.3': '.26',
+                '.4': '.27',
+                '.5': '.28',
+                '.6': '.29',
+                '.7': '.30',
+                '.8': '.31'
+            }
+            self.has_lanes = False
+            self.max_lanes = 1
         else:
             pass
 
@@ -137,7 +179,7 @@ class snmpPduController(PduControllerBase):
 
         errorIndication, errorStatus, errorIndex, varTable = cmdGen.nextCmd(
             snmp_auth,
-            cmdgen.UdpTransportTarget((self.controller, 161)),
+            cmdgen.UdpTransportTarget((self.controller, self.snmp_port)),
             cmdgen.MibVariable(query_oid)
             )
         if errorIndication:
@@ -160,6 +202,9 @@ class snmpPduController(PduControllerBase):
         if not self.pduType:
             logging.info('PDU type is unknown: pdu_ip {}'.format(self.controller))
             return
+        elif self.pduType == 'SmartPower':
+            logging.info('_get_pdu_ports: PDU type is SmartPower: pdu_ip {}'.format(self.controller))
+            return
 
         cmdGen = cmdgen.CommandGenerator()
         snmp_auth = cmdgen.CommunityData(self.snmp_rocommunity)
@@ -176,6 +221,8 @@ class snmpPduController(PduControllerBase):
         self.pduType = None
         self.port_oid_dict = {}
         self.port_label_dict = {}
+        self.snmp_port = 161
+        self.status_control_map = {}
         self.get_pdu_controller_type()
         self.pduCntrlOid()
         self._get_pdu_ports()
@@ -197,12 +244,16 @@ class snmpPduController(PduControllerBase):
         if not self.pduType:
             logging.error('Unable to turn on: PDU type is unknown: pdu_ip {}'.format(self.controller))
             return False
-
-        port_oid = '.' + self.PORT_CONTROL_BASE_OID + outlet
+        logging.info("turn_on_outlet: outlet={}".format(outlet))
+        if self.pduType == 'SmartPower':
+            logging.info("turn_on_outlet: self.index_control_map[outlet]={}".format(self.index_control_map[outlet]))
+            port_oid = '.' + self.PORT_CONTROL_BASE_OID + self.index_control_map[outlet]
+        else:
+            port_oid = '.' + self.PORT_CONTROL_BASE_OID + outlet
         errorIndication, errorStatus, _, _ = \
         cmdgen.CommandGenerator().setCmd(
             cmdgen.CommunityData(self.snmp_rwcommunity),
-            cmdgen.UdpTransportTarget((self.controller, 161)),
+            cmdgen.UdpTransportTarget((self.controller, self.snmp_port)),
             (port_oid, rfc1902.Integer(self.CONTROL_ON))
         )
         if errorIndication or errorStatus != 0:
@@ -226,12 +277,16 @@ class snmpPduController(PduControllerBase):
         if not self.pduType:
             logging.error('Unable to turn off: PDU type is unknown: pdu_ip {}'.format(self.controller))
             return False
-
-        port_oid = '.' + self.PORT_CONTROL_BASE_OID + outlet
+        logging.info("turn_off_outlet: outlet={}".format(outlet))
+        if self.pduType == 'SmartPower':
+            port_oid = '.' + self.PORT_CONTROL_BASE_OID + self.index_control_map[outlet]
+            logging.info("turn_off_outlet: self.index_control_map[outlet]={}".format(self.index_control_map[outlet]))
+        else:
+            port_oid = '.' + self.PORT_CONTROL_BASE_OID + outlet
         errorIndication, errorStatus, _, _ = \
         cmdgen.CommandGenerator().setCmd(
             cmdgen.CommunityData(self.snmp_rwcommunity),
-            cmdgen.UdpTransportTarget((self.controller, 161)),
+            cmdgen.UdpTransportTarget((self.controller, self.snmp_port)),
             (port_oid, rfc1902.Integer(self.CONTROL_OFF))
         )
         if errorIndication or errorStatus != 0:
@@ -246,7 +301,7 @@ class snmpPduController(PduControllerBase):
         query_id = '.' + self.PORT_POWER_BASE_OID + port_id
         errorIndication, errorStatus, errorIndex, varBinds = cmdGen.getCmd(
             snmp_auth,
-            cmdgen.UdpTransportTarget((self.controller, 161)),
+            cmdgen.UdpTransportTarget((self.controller, self.snmp_port)),
             cmdgen.MibVariable(query_id)
             )
         if errorIndication:
@@ -264,7 +319,7 @@ class snmpPduController(PduControllerBase):
         query_id = '.' + self.PORT_STATUS_BASE_OID + port_id
         errorIndication, errorStatus, errorIndex, varBinds = cmdGen.getCmd(
             snmp_auth,
-            cmdgen.UdpTransportTarget((self.controller, 161)),
+            cmdgen.UdpTransportTarget((self.controller, self.snmp_port)),
             cmdgen.MibVariable(query_id)
             )
         if errorIndication:
@@ -276,7 +331,10 @@ class snmpPduController(PduControllerBase):
             port_oid = current_oid.replace(self.PORT_STATUS_BASE_OID, '')
             if port_oid == port_id:
                 status = {"outlet_id": port_oid, "outlet_on": True if current_val == self.STATUS_ON else False}
-                self._get_one_outlet_power(cmdGen, snmp_auth, port_id, status)
+                if self.pduType == 'SmartPower':
+                    self._get_one_outlet_power(cmdGen, snmp_auth, self.index_status_map[port_id], status)
+                else:
+                    self._get_one_outlet_power(cmdGen, snmp_auth, port_id, status)
                 return status
 
         return None
@@ -302,18 +360,29 @@ class snmpPduController(PduControllerBase):
             logging.error('Unable to retrieve status: PDU type is unknown: pdu_ip {}'.format(self.controller))
             return results
 
-        if not outlet and not hostname:
-            # Return status of all outlets
-            ports = self.port_oid_dict.keys()
-        elif outlet:
-            ports = [ oid for oid in self.port_oid_dict.keys() if oid.endswith(outlet) ]
-            if not ports:
-                logging.error("Outlet ID {} doesn't belong to PDU {}".format(outlet, self.controller))
-        elif hostname:
-            hn = hostname.lower()
-            ports = [ self.port_label_dict[label]['port_oid'] for label in self.port_label_dict.keys() if hn in label ]
-            if not ports:
-                logging.error("{} device is not attached to any outlet of PDU {}".format(hn, self.controller))
+        if self.pduType != 'SmartPower':
+            if not outlet and not hostname:
+                # Return status of all outlets
+                ports = self.port_oid_dict.keys()
+            elif outlet:
+                ports = [ oid for oid in self.port_oid_dict.keys() if oid.endswith(outlet) ]
+                if not ports:
+                    logging.error("Outlet ID {} doesn't belong to PDU {}".format(outlet, self.controller))
+            elif hostname:
+                hn = hostname.lower()
+                ports = [ self.port_label_dict[label]['port_oid'] for label in self.port_label_dict.keys() if hn in label ]
+                if not ports:
+                    logging.error("{} device is not attached to any outlet of PDU {}".format(hn, self.controller))
+        else:
+            if not outlet and not hostname:
+                # Return status of all outlets
+                ports = ['.1', '.2', '.3', '.4', '.5', '.8']
+            elif outlet:
+                ports = [outlet]
+            elif hostname:
+                ports = ['.1', '.2']
+                # Modify it as changing power switch ports
+
 
         cmdGen = cmdgen.CommandGenerator()
         snmp_auth = cmdgen.CommunityData(self.snmp_rocommunity)
