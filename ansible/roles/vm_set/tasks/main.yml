@@ -113,7 +113,7 @@
 
 - name: remove old python packages
   pip: name=docker-py state=absent executable={{ pip_executable }}
-  environment: "{{ proxy_env | default({}) }}"
+  #environment: "{{ proxy_env | default({}) }}"
   ignore_errors: yes
 
 - include_tasks: docker.yml
