@@ -6,14 +6,17 @@ all:
       children:
         sonic:
           children:
-            sonic_sn2700_40:
-            sonic_s6000:
-            sonic_s6100:
-            sonic_a7260:
-            sonic_multi_asic:
-            sonic_multi_asic_2:
-            sonic_msft_sup:
-            sonic_msft_lc_100G:
+            #sonic_ix8c_25:
+            #sonic_ix1b_100:
+            sonic_ix7_100:
+            #sonic_sn2700_40:
+            #sonic_s6000:
+            #sonic_s6100:
+            #sonic_a7260:
+            #sonic_multi_asic:
+            #sonic_multi_asic_2:
+            #sonic_msft_sup:
+            #sonic_msft_lc_100G:
         fanout:
           hosts:
             str-7260-10:
@@ -37,6 +40,30 @@ all:
           ansible_host: 10.250.0.100
           ansible_ssh_user: root
           ansible_ssh_pass: root
+
+sonic_ix8c_25:
+  vars:
+    hwsku: "Quanta-IX8C-56X"
+    iface_speed: 25000
+  hosts:
+    str-ix8c-25: 
+      ansible_host: 10.250.0.188
+      ansible_ssh_user: admin
+      ansible_ssh_pass: YourPaSsWoRd
+
+
+sonic_ix7_100:
+  vars:
+    hwsku: "Quanta-IX7-32X"
+    iface_speed: 100000
+  hosts:
+    str-ix7-100:
+      ansible_host: 10.250.0.188
+      ansible_ssh_user: admin
+      ansible_ssh_pass: YourPaSsWoRd
+      num_asics: 1
+
+
 
 sonic_sn2700_40:
   vars:
