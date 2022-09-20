@@ -29,11 +29,11 @@ all:
     ptf:
       hosts:
         ptf_ptf1:
-          ansible_host: 10.255.0.188
+          ansible_host: 10.250.0.188
           ansible_ssh_user: root
           ansible_ssh_pass: root
         ptf_vms1-1:
-          ansible_host: 10.255.0.178
+          ansible_host: 10.250.0.178
           ansible_ssh_user: root
           ansible_ssh_pass: root
         ptf_vms6-1:
@@ -57,7 +57,7 @@ sonic_ix7_100:
     hwsku: "Quanta-IX7-32X"
     iface_speed: 100000
   hosts:
-    str-ix7-100:
+    T7032-IX7:
       ansible_host: 10.250.0.188
       ansible_ssh_user: admin
       ansible_ssh_pass: YourPaSsWoRd
