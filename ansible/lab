@@ -57,7 +57,7 @@ sonic_ix7_100:
     hwsku: "Quanta-IX7-32X"
     iface_speed: 100000
   hosts:
-    str-ix7-100:
+    T7032-IX7:
       ansible_host: 10.250.0.188
       ansible_ssh_user: admin
       ansible_ssh_pass: YourPaSsWoRd
