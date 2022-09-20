@@ -62,8 +62,26 @@ sonic_ix7_100:
       ansible_ssh_user: admin
       ansible_ssh_pass: YourPaSsWoRd
       num_asics: 1
-
-
+      model: 1IX7U7Z0ST5
+      serial: QTFCUW8270019
+      base_mac: D8:C4:97:61:FF:69
+      syseeprom_info:
+        "0x21": "T7032-IX7"
+        "0x22": "1IX7U7Z0ST5"
+        "0x23": "QTFCUW8270019"
+        "0x24": "D8:C4:97:61:FF:69"
+        "0x25": "05/08/2018 00:00:00"
+        "0x26": "1"
+        "0x27": "B3D"
+        "0x28": "x86_64-quanta_common_rglbmc-r0"
+        "0x29": "2016.05.00.06"
+        "0x2A": "133"
+        "0x2B": "QSMC"
+        "0x2C": "CN"
+        "0x2D": "QCI"
+        "0x2E": "3.0.2.0"
+        "0xFD": "0x49 0x58 0x37 0x20 0x46 0x42 "
+        "0xFE": "0x6E7CE401"
 
 sonic_sn2700_40:
   vars:
