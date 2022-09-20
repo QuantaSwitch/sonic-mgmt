@@ -1,5 +1,5 @@
 Hostname,ManagementIp,HwSku,Type,Protocol
-str-ix7-100,10.250.0.188/24,Quanta-IX7-32X,DevSonic
+T7032-IX7,10.250.0.188/24,Quanta-IX7-32X,DevSonic
 str-7260-10,10.251.0.13/24,Quanta-IX1,FanoutLeaf
 str-7260-11,10.251.0.234/24,Quanta-IX2,FanoutRoot
 str-acs-serv-01,10.251.0.245/23,TestServ,Server
