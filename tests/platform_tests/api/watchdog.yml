@@ -17,6 +17,13 @@ default:
   greater_timeout: 20   # A greater timeout value that watchdog has to accept, put None if single timeout value is a watchdog limitation
   too_big_timeout: 100  # A timeout which is too big for HW watchdog, put None if there is no such limitation
 
+# Quanta RGLBMC iTCO watchdog
+x86_64-quanta_.*_rglbmc-r0:
+  default:
+    valid_timeout: 10
+    greater_timeout: 20
+    too_big_timeout: 1024
+
 # Mellanox watchdog type 1
 x86_64-mlnx_msn2.*-r0:
   default:
