@@ -278,7 +278,7 @@ def test_turn_on_off_psu_and_check_psustatus(duthosts, enum_rand_one_per_hwsku_h
 
         logging.info("Turn on outlet {}".format(outlet))
         pdu_ctrl.turn_on_outlet(outlet)
-        time.sleep(5)
+        time.sleep(30) # For Quanta IX7 PSU status from BMC
 
         cli_psu_status = duthost.command(CMD_PLATFORM_PSUSTATUS)
         for line in cli_psu_status["stdout_lines"][2:]:
