@@ -3,6 +3,4 @@ T7032-IX7,10.250.0.188/24,Quanta-IX7-32X,DevSonic
 str-7260-10,10.251.0.13/24,Quanta-IX1,FanoutLeaf
 str-7260-11,10.251.0.234/24,Quanta-IX2,FanoutRoot
 str-acs-serv-01,10.251.0.245/23,TestServ,Server
-pdu-1,192.168.9.2,Apc,Pdu,snmp
-pdu-2,192.168.9.3,Sentry,Pdu,snmp
-console-1,192.168.10.1,Cisco,ConsoleServer,ssh
+pdu-1,10.250.0.212,SmartPower,Pdu,snmp
