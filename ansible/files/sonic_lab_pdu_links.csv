@@ -7,3 +7,5 @@ pdu-2,1,str-7260-11,PSU1
 pdu-2,3,str-7260-11,PSU2
 pdu-2,2,str-acs-serv-01,PSU1
 pdu-2,4,str-acs-serv-01,PSU2
+pdu-1,1,T7032-IX7,PSU1
+pdu-1,2,T7032-IX7,PSU2
