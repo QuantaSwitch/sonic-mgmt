@@ -29,7 +29,7 @@ pytestmark = [
     pytest.mark.topology('any')
 ]
 
-MAX_WAIT_TIME_FOR_INTERFACES = 300
+MAX_WAIT_TIME_FOR_INTERFACES = 360 # For Quanta IX7
 MAX_WAIT_TIME_FOR_REBOOT_CAUSE = 120
 
 
