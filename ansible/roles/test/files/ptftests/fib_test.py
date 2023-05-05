@@ -365,9 +365,13 @@ class FibTest(BaseTest):
                                 format(ip_src, ip_dst, src_port, rcvd_port, exp_src_mac, actual_src_mac))
             return (rcvd_port, rcvd_pkt)
         elif self.pkt_action == self.ACTION_DROP:
-            rcvd_port_index, rcvd_pkt = verify_no_packet_any(self, masked_exp_pkt, dst_ports)
-            rcvd_port = dst_ports[rcvd_port_index]
-            return (rcvd_port, rcvd_pkt)
+            # Modify by Eric
+            # Merge the code to match PR#6461
+            #rcvd_port_index, rcvd_pkt = verify_no_packet_any(self, masked_exp_pkt, dst_ports)
+            #rcvd_port = dst_ports[rcvd_port_index]
+            #return (rcvd_port, rcvd_pkt)
+            verify_no_packet_any(self, masked_exp_pkt, dst_ports)
+            return (None, None)
     #---------------------------------------------------------------------
 
     def check_ipv6_route(self, src_port, dst_ip_addr, dst_port_lists):
@@ -456,9 +460,13 @@ class FibTest(BaseTest):
                                 format(ip_src, ip_dst, src_port, rcvd_port, exp_src_mac, actual_src_mac))
             return (rcvd_port, rcvd_pkt)
         elif self.pkt_action == self.ACTION_DROP:
-            rcvd_port_index, rcvd_pkt = verify_no_packet_any(self, masked_exp_pkt, dst_ports)
-            rcvd_port = dst_ports[rcvd_port_index]
-            return (rcvd_port, rcvd_pkt)
+            # Modify by Eric
+            # Merge the code to match PR#6461
+            #rcvd_port_index, rcvd_pkt = verify_no_packet_any(self, masked_exp_pkt, dst_ports)
+            #rcvd_port = dst_ports[rcvd_port_index]
+            #return (rcvd_port, rcvd_pkt)
+            verify_no_packet_any(self, masked_exp_pkt, dst_ports)
+            return (None, None)
 
     def check_within_expected_range(self, actual, expected):
         '''

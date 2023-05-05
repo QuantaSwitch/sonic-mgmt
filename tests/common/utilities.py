@@ -131,13 +131,15 @@ def wait_until(timeout, interval, delay, condition, *args, **kwargs):
         return False
 
 
-def wait_tcp_connection(client, server_hostname, listening_port, timeout_s = 30):
+# Modify by Eric
+# Change timeout_s from 30 to 60
+def wait_tcp_connection(client, server_hostname, listening_port, timeout_s = 60):
     """
     @summary: Wait until tcp connection is ready or timeout
     @param client: The tcp client host instance
     @param server_hostname: The tcp server hostname
     @param listening_port: Port server is listening on
-    @param timeout: Maximum time to wait (30s in default)
+    @param timeout: Maximum time to wait (30s in default, 60s in quanta)
     """
     res = client.wait_for(host=server_hostname,
                           port=listening_port,

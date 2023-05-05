@@ -46,7 +46,10 @@ def setup_mvrf(duthosts, rand_one_dut_hostname, localhost, check_ntp_sync):
     try:
         logger.info("Configure mgmt vrf")
         duthost.command("sudo config vrf add mgmt", module_async=True)
-        time.sleep(5)
+        # Modify by Eric
+        # Change time.sleep from 5 to 10
+        time.sleep(10)
+        # End 
         verify_show_command(duthost, mvrf=True)
     except Exception as e:
         logger.error("Exception raised in setup, exception: {}".format(repr(e)))
@@ -58,7 +61,10 @@ def setup_mvrf(duthosts, rand_one_dut_hostname, localhost, check_ntp_sync):
     try:
         logger.info("Unconfigure  mgmt vrf")
         duthost.shell("sudo config vrf del mgmt", module_async=True)
-        time.sleep(5)
+        # Modify by Eric
+        # Change time.sleep from 5 to 10
+        time.sleep(10)
+        # End
 
         localhost.wait_for(host=duthost.mgmt_ip,
                         port=SONIC_SSH_PORT,
@@ -175,7 +181,10 @@ class TestMvrfOutbound():
         logger.info("Starting http server on PTF")
         free_port = self.get_free_port(ptfhost)
         ptfhost.command("python {} {}".format(server_script_dest_path, free_port), module_async=True)
-        localhost.wait_for(host=ptfhost.mgmt_ip, port=int(free_port), state="started", timeout=30)
+        # Modify by Eric
+        # Change timeout from 30 to 60
+        localhost.wait_for(host=ptfhost.mgmt_ip, port=int(free_port), state="started", timeout=60)
+        # End
 
         url = "http://{}:{}".format(ptfhost.mgmt_ip, free_port)
         from temp_http_server import MAGIC_STRING

@@ -1,6 +1,7 @@
 Hostname,ManagementIp,HwSku,Type,Protocol
-T7032-IX7,10.250.0.188/24,Quanta-IX7-32X,DevSonic
-str-7260-10,10.251.0.13/24,Quanta-IX1,FanoutLeaf
-str-7260-11,10.251.0.234/24,Quanta-IX2,FanoutRoot
-str-acs-serv-01,10.251.0.245/23,TestServ,Server
+str-ix7-100,172.16.32.188/24,Quanta-IX7-BWDE-32X,DevSonic
+str-7260-10,172.16.32.213/24,Quanta-IX7-32X,FanoutLeaf
+str-7260-11,172.16.32.212/24,Quanta-IX8C-56X,FanoutRoot
+str-acs-serv-01,172.16.32.245/24,TestServ,Server
 pdu-1,10.250.0.212,SmartPower,Pdu,snmp
+Testbedconsole,172.16.32.240,Cisco,ConsoleServer,ssh

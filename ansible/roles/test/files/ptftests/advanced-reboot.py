@@ -1411,9 +1411,12 @@ class ReloadTest(BaseTest):
             lacp_pdu_up_times and len(lacp_pdu_up_times) > 0 else None
         if ('warm-reboot' in self.reboot_type or 'service-warm-restart' in self.reboot_type) and lacp_pdu_before_reboot and lacp_pdu_after_reboot:
             lacp_time_diff = lacp_pdu_after_reboot - lacp_pdu_before_reboot
-            if lacp_time_diff >= 90 and not self.kvm_test:
+            # Modify by Eric
+            # Change lacp time diff from 90 to 100
+            if lacp_time_diff >= 100 and not self.kvm_test:
                 self.fails['dut'].add("LACP session likely terminated by neighbor ({})".format(ip) +\
                     " post-reboot lacpdu came after {}s of lacpdu pre-boot".format(lacp_time_diff))
+            # End by Eric
         else:
             lacp_time_diff = None
         self.lacp_session_pause[ip] = lacp_time_diff

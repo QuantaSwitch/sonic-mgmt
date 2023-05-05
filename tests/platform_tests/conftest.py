@@ -486,11 +486,23 @@ def advanceboot_loganalyzer(duthosts, rand_one_dut_hostname, request):
                     logging.error("kexec regex \"Rebooting with /sbin/kexec\" not found in syslog. " +\
                     "Skipping log_analyzer checks..")
                     return
-                analyze_log_file(duthost, messages, analyze_result, offset_from_kexec)
+                # Modify by Eric
+                # Merge the code to match PR#7106
+                #analyze_log_file(duthost, messages, analyze_result, offset_from_kexec)
+                syslog_messages = messages
             elif "bgpd.log" in key:
-                analyze_log_file(duthost, messages, analyze_result, offset_from_kexec)
+                #analyze_log_file(duthost, messages, analyze_result, offset_from_kexec)
+                bgpd_log_messages = messages
             elif "sairedis.rec" in key:
-                analyze_sairedis_rec(messages, analyze_result, offset_from_kexec)
+                #analyze_sairedis_rec(messages, analyze_result, offset_from_kexec)
+                sairedis_rec_messages = messages
+                # End
+        # Add by Eric
+        # Merge the code to match PR#7106
+        analyze_log_file(duthost, syslog_messages, analyze_result, offset_from_kexec)
+        analyze_log_file(duthost, bgpd_log_messages, analyze_result, offset_from_kexec)
+        analyze_sairedis_rec(sairedis_rec_messages, analyze_result, offset_from_kexec)
+        # End
 
         for marker, time_data in analyze_result["offset_from_kexec"].items():
             marker_start_time = time_data.get("timestamp", {}).get("Start")

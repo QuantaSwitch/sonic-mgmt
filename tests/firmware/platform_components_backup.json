@@ -1,0 +1,17 @@
+{
+    "chassis": {
+        "T7032-IX7-BDE": {
+            "component": {
+                "BIOS": { },
+                "BMC": { },
+                "BOOT_CPLD": { },
+                "FAN_CPLD": { },
+                "MB_CPLD_IO_1": { },
+                "MB_CPLD_IO_2": { },
+                "MB_CPLD_LED_1": { },
+                "MB_CPLD_LED_2": { },
+                "PCIe": { }                
+            }
+        }
+    }
+}

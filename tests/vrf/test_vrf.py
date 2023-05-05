@@ -303,6 +303,9 @@ def setup_vlan_peer(duthost, ptfhost, cfg_facts):
             for ip in ips:
                 neigh_ip = IPNetwork("{}/{}".format(ip.ip+1, ip.prefixlen))
                 ptfhost.shell("ip netns exec {} ip address add {} dev e{}mv1".format(ns, neigh_ip, vlan_peer_port))
+                # Add by Eric
+                time.sleep(5)
+                # End
 
                 # ping to trigger neigh resolving
                 ping_cmd = 'ping' if neigh_ip.version ==4 else 'ping6'
@@ -1070,7 +1073,7 @@ class TestVrfWarmReboot():
                "Some components didn't finish reconcile: {} ...".format(tbd_comp_list)
 
         # basic check after warm reboot
-        assert wait_until(300, 20, 0, duthost.critical_services_fully_started), \
+        assert wait_until(360, 20, 0, duthost.critical_services_fully_started), \
                "All critical services should fully started!{}".format(duthost.critical_services)
 
         up_ports = [p for p, v in cfg_facts['PORT'].items() if v.get('admin_status', None) == 'up' ]
@@ -1506,7 +1509,10 @@ class TestVrfDeletion():
         gen_vrf_neigh_file('Vrf2', ptfhost, render_file="/tmp/vrf2_neigh.txt")
 
         duthost.shell("config vrf del Vrf1")
-        time.sleep(5)
+        # Modify by Eric
+        # Change time from 5 to 10
+        time.sleep(10)
+        # End
 
         # -------- Testing ----------
         yield

@@ -72,16 +72,24 @@ def test_portstat_delete_all(duthosts, enum_rand_one_per_hwsku_frontend_hostname
     logger.info('Verify that the file names are in the /tmp directory')
     uid = duthost.command('id -u')['stdout'].strip()
     for stats_file in stats_files:
-        pytest_assert(duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
-                      .format(uid=uid, filename=stats_file))['stat']['exists'])
+        # Modify by Eric
+        # Merge the code to match PR#6148
+        #pytest_assert(duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
+        #              .format(uid=uid, filename=stats_file))['stat']['exists'])
+        pytest_assert(get_tmp_portstat_file_existing_status(duthost, uid, stats_file))
+        # End
 
     logger.info('Run the command to be tested "{}"'.format(command))
     duthost.command(command)
 
     logger.info('Verify that the file names are not in the /tmp directory')
     for stats_file in stats_files:
-        pytest_assert(not duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
-                      .format(uid=uid, filename=stats_file))['stat']['exists'])
+        # Modify by Eric
+        # Merge the code to match PR#6148
+        #pytest_assert(not duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
+        #              .format(uid=uid, filename=stats_file))['stat']['exists'])
+        pytest_assert(not get_tmp_portstat_file_existing_status(duthost, uid, stats_file))
+        # End
 
 
 @pytest.mark.parametrize('command',
@@ -100,21 +108,41 @@ def test_portstat_delete_tag(duthosts, enum_rand_one_per_hwsku_frontend_hostname
     logger.info('Verify that the file names are in the /tmp directory')
     uid = duthost.command('id -u')['stdout'].strip()
     for stats_file in stats_files:
-        pytest_assert(duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
-                      .format(uid=uid, filename=stats_file))['stat']['exists'])
+        # Modify by Eric
+        # Merge the code to match PR#6148
+        #pytest_assert(duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
+        #              .format(uid=uid, filename=stats_file))['stat']['exists'])
+        pytest_assert(get_tmp_portstat_file_existing_status(duthost, uid, stats_file))
+        # End
 
     full_delete_command = command + ' ' + file_to_delete
     logger.info('Run the command to be tested "{}"'.format(full_delete_command))
     duthost.command(full_delete_command)
 
     logger.info('Verify that the deleted file name is not in the directory')
-    pytest_assert(not duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
-                  .format(uid=uid, filename=file_to_delete))['stat']['exists'])
+    # Modify by Eric
+    # Merge the code to match PR#6148
+    #pytest_assert(not duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
+    #              .format(uid=uid, filename=file_to_delete))['stat']['exists'])
+    pytest_assert(not get_tmp_portstat_file_existing_status(duthost, uid, file_to_delete))
+    # End
 
     logger.info('Verify that the remaining file names are in the directory')
     for stats_file in files_not_deleted:
-        pytest_assert(duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
-                      .format(uid=uid, filename=stats_file))['stat']['exists'])
+        # Modify by Eric
+        # Merge the code to match PR#6148
+        #pytest_assert(duthost.stat(path='/tmp/portstat-{uid}/{uid}-{filename}'\
+        #              .format(uid=uid, filename=stats_file))['stat']['exists'])
+        pytest_assert(get_tmp_portstat_file_existing_status(duthost, uid, stats_file))
+        # End
+
+
+# Add by Eric
+# Merge the code to match PR#6148
+def get_tmp_portstat_file_existing_status(duthost, uid, stats_file):
+     return duthost.stat(path='/tmp/cache/portstat/{uid}-{filename}'.format(
+         uid=uid, filename=stats_file))['stat']['exists']
+# End
 
 
 @pytest.mark.parametrize('command', ['portstat -a', 'portstat --all'])

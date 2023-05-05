@@ -27,6 +27,11 @@
             "user": "admin",
             "passwd": ["password"],
             "enable": ["password"] 
+        },
+	 "Sonic": {
+            "user": "admin",
+            "passwd": ["password", "YourPaSsWoRd"],
+            "enable": ["", null]
         }
     }
 }

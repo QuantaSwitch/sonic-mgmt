@@ -16,6 +16,29 @@ acl/test_acl_outer_vlan.py:
       - "asic_type in ['cisco-8000']"
 
 #######################################
+#####          cutsom_acl         #####
+#######################################
+acl/custom_acl_table/test_custom_acl_table.py:
+  skip:
+    reason: "Custom ACL not supported on older releases"
+    conditions:
+      - "release in ['201811', '201911', '202012']"
+#######################################
+#####            arp              #####
+#######################################
+arp/test_arp_dualtor.py::test_proxy_arp_for_standby_neighbor:
+  skip:
+    reason: "`accept_untracked_na` currently only available in 202012"
+    conditions:
+      - "release not in ['202012']"
+
+arp/test_stress_arp.py:
+  skip:
+    resason: "Extremely long long run time."
+    conditions:
+      - https://github.com/sonic-net/sonic-mgmt/issues/7874
+
+#######################################
 #####            bfd              #####
 #######################################
 bfd/test_bfd.py:
@@ -550,7 +573,7 @@ qos/test_qos_sai.py::TestQosSai::testQosSaiHeadroomPoolWatermark[None]:
   xfail:
     reason: "Headroom pool size not supported."
     conditions:
-      - "platform in ['x86_64-arista_7050cx3_32s'] or hwsku not in ['Arista-7060CX-32S-C32', 'Celestica-DX010-C32', 'Arista-7260CX3-D108C8', 'Force10-S6100', 'Arista-7260CX3-Q64', 'Arista-7050CX3-32S-C32']"
+      - "platform in ['x86_64-arista_7050cx3_32s'] or hwsku not in ['Arista-7060CX-32S-C32', 'Celestica-DX010-C32', 'Arista-7260CX3-D108C8', 'Force10-S6100', 'Arista-7260CX3-Q64', 'Arista-7050CX3-32S-C32', 'Quanta-IX7-32X', 'Quanta-IX7-BWDE-32X']"
 
 qos/test_qos_sai.py::TestQosSai::testQosSaiPGDrop:
   skip:
@@ -772,3 +795,24 @@ vxlan/test_vxlan_ecmp.py:
     reason: "VxLAN ECMP test is not yet supported on multi-ASIC platform. Also this test can only run on 4600c and 8102."
     conditions:
       - "(is_multi_asic==True) or (platform not in ['x86_64-mlnx_msn4600c-r0', 'x86_64-8102_64h_o-r0'])"
+
+# Add by Eric
+# Merge the code to match PR#6473
+#######################################
+#####           telemetry         #####
+#######################################
+telemetry/test_telemetry.py:
+  skip:
+    reason: "Skip telemetry test for 201911 and older branches"
+    conditions:
+      - "(is_multi_asic==True) and (release in ['201811', '201911'])"
+
+#######################################
+#####           vrf_attr          #####
+#######################################
+vrf/test_vrf_attr.py::TestVrfAttrSrcMac::test_vrf1_neigh_with_default_router_mac:
+  skip:
+    reason: "RIF MAC taking precedence over VRF MAC"
+    conditions:
+      - "asic_type in ['barefoot']"
+# End

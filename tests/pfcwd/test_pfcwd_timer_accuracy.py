@@ -150,12 +150,16 @@ class TestPfcwdAllTimer(object):
         logger.info("Wait for queue to recover from PFC storm")
         time.sleep(8)
 
-        storm_start_ms = self.retrieve_timestamp("[P]FC_STORM_START")
-        storm_detect_ms = self.retrieve_timestamp("[d]etected PFC storm")
+        #Jerry 2022/12/26 brackets may not grep successly sometimes
+        storm_start_ms = self.retrieve_timestamp("PFC_STORM_START")
+        storm_detect_ms = self.retrieve_timestamp("detected PFC storm")
+        #Jerry 2022/12/26
         logger.info("Wait for PFC storm end marker to appear in logs")
         time.sleep(1)
-        storm_end_ms = self.retrieve_timestamp("[P]FC_STORM_END")
-        storm_restore_ms = self.retrieve_timestamp("[s]torm restored")
+        #Jerry 2022/12/26 brackets may not grep successly sometimes
+        storm_end_ms = self.retrieve_timestamp("PFC_STORM_END")
+        storm_restore_ms = self.retrieve_timestamp("storm restored")
+        #Jerry 2022/12/26
         real_detect_time = storm_detect_ms - storm_start_ms
         real_restore_time = storm_restore_ms - storm_end_ms
         self.all_detect_time.append(real_detect_time)
@@ -205,7 +209,9 @@ class TestPfcwdAllTimer(object):
         Returns:
             timestamp_ms (int): syslog timestamp in ms for the line matching the pattern
         """
-        cmd = "grep \"{}\" /var/log/syslog".format(pattern)
+        # Modify by Eric
+        cmd = "sudo grep \"{}\" /var/log/syslog".format(pattern)
+        # End by Eric
         syslog_msg =self.dut.shell(cmd)['stdout']
         timestamp = syslog_msg.replace('  ', ' ').split(' ')[2]
         timestamp_ms = self.dut.shell("date -d {} +%s%3N".format(timestamp))['stdout']

@@ -642,15 +642,35 @@ class SonicHost(AnsibleHostBase):
             service_group_process = group_process_results[service]
 
             service_result = service_results[service]
+            # Add by Eric
+            # Merge the code for PR#6486
+            if not service_result['stdout_lines']:
+                service_critical_process['status'] = False
+            # End
             for line in service_result['stdout_lines']:
                 pname, status, _ = re.split('\s+', line, 2)
-                if status != 'RUNNING':
+                # Add by Eric
+                # Merge the code for PR#6486
+                #if status != 'RUNNING':
+                # Sometimes, stdout_lines may be error messages but not emtpy
+                # In this situation, service container status should be false
+                # We can check status is valid or not
+                if status not in ('RUNNING','EXITED','STOPPED'):
+                    # Modify by Eric
+                    # Merge the code for PR#6546
+                    #service_critical_process['status'] = False
+                    if pname in service_group_process['groups'] or pname in service_group_process['processes']:
+                        service_critical_process['exited_critical_process'].append(pname)
+                        service_critical_process['status'] = False
+                    # End
+                elif status != 'RUNNING':
                     if pname in service_group_process['groups'] or pname in service_group_process['processes']:
                         service_critical_process['exited_critical_process'].append(pname)
                         service_critical_process['status'] = False
                 else:
                     if pname in service_group_process['groups'] or pname in service_group_process['processes']:
                         service_critical_process['running_critical_process'].append(pname)
+                # End
             all_critical_process[service] = service_critical_process
 
         return all_critical_process

@@ -66,6 +66,8 @@ def ignore_expected_loganalyzer_exception(duthosts, enum_rand_one_per_hwsku_host
         SNMP/TEAMD container hits the limitation of restart. route_check.py also wrote an error message into syslog.
 
     """
+    # Modify by Eric
+    # Merge code for PR#6486
     swss_syncd_teamd_regex = [
             ".*ERR swss[0-9]*#orchagent.*removeLag.*",
             ".*ERR syncd[0-9]*#syncd.*driverEgressMemoryUpdate.*",
@@ -75,6 +77,15 @@ def ignore_expected_loganalyzer_exception(duthosts, enum_rand_one_per_hwsku_host
             ".*ERR syncd[0-9]*#syncd.*SAI_API_SWITCH:sai_object_type_get_availability.*",
             ".*ERR syncd[0-9]*#syncd.*sendApiResponse: api SAI_COMMON_API_SET failed in syncd mode.*",
             ".*ERR syncd[0-9]*#syncd.*processQuadEvent.*",
+            ".*ERR syncd[0-9]*#syncd.*saiGetMacAddress: failed to get mac address: SAI_STATUS_ITEM_NOT_FOUND.*",
+            ".*ERR syncd[0-9]*#SDK.*mlnx_bridge_1d_oid_to_data: Unexpected bridge type 0 is not 1D.*",
+            ".*ERR syncd[0-9]*#SDK.*mlnx_bridge_port_lag_or_port_get: Invalid port type - 2.*",
+            ".*ERR syncd[0-9]*#SDK.*mlnx_bridge_port_isolation_group_get: Isolation group is only supported for bridge port type port.*",
+            ".*ERR syncd[0-9]*#SDK.*mlnx_debug_counter_availability_get: Unsupported debug counter type - (0|1).*",
+            ".*ERR syncd[0-9]*#SDK.*mlnx_get_port_stats_ext: Invalid port counter (177|178|179|180|181|182).*",
+            ".*ERR syncd[0-9]*#SDK.*Failed getting attrib SAI_BRIDGE_.*",
+            ".*ERR syncd[0-9]*#SDK.*sai_get_attributes: Failed attribs dispatch.*",
+            ".*ERR syncd[0-9]*#SDK.*Failed command read at communication channel: Connection reset by peer.*",
             ".*WARNING syncd[0-9]*#syncd.*skipping since it causes crash.*",
             # Known issue, captured here: https://github.com/Azure/sonic-buildimage/issues/10000 , ignore it for now
             ".*ERR swss[0-9]*#fdbsyncd.*readData.*netlink reports an error=-25 on reading a netlink socket.*",
@@ -88,7 +99,10 @@ def ignore_expected_loganalyzer_exception(duthosts, enum_rand_one_per_hwsku_host
     ignore_regex_dict = {
         'common' : [
             ".*ERR monit.*",
-            ".*ERR systemd.*Failed to start .* container*",
+            # Modify by Eric
+            # Merge the code to match PR#6486
+            ".*ERR systemd.*Failed to start .* [Cc]ontainer*",
+            # End
             ".*ERR kernel.*PortChannel.*",
             ".*ERR route_check.*",
         ],
@@ -321,6 +335,16 @@ def postcheck_critical_processes_status(duthost, feature_autorestart_states, up_
     Returns:
       True if post check succeeds; Otherwise False.
     """
+    # Add by Eric
+    # Merge the code for PR#6355
+    # Check if all critical processes are running with timeout 100 sec, if not
+    # then this timeout will help to stabilize service state and to spot
+    # start-limit-hit if it was exceeded.
+    wait_until(
+        100, POST_CHECK_INTERVAL_SECS, 0,
+        check_all_critical_processes_status, duthost
+    )
+    # End 
     for feature_name in feature_autorestart_states.keys():
         if feature_name in duthost.DEFAULT_ASIC_SERVICES:
             for asic in duthost.asics:

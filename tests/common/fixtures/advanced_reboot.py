@@ -507,7 +507,10 @@ class AdvancedReboot:
                 thread.join(timeout=ptf_timeout, suppress_exception=True)
                 self.ptfhost.shell("pkill -f 'ptftests advanced-reboot.ReloadTest'", module_ignore_errors=True)
                 # the thread might still be running, and to catch any exceptions after pkill allow 10s to join
-                thread.join(timeout=10)
+                # Modify by Eric
+                # Change timeout from 10 to 20
+                thread.join(timeout=20)
+                # End
                 self.__verifyRebootOper(rebootOper)
                 if self.postboot_setup:
                     self.postboot_setup()
@@ -678,12 +681,22 @@ class AdvancedReboot:
                 wait = self.readyTimeout
             )
 
+    # Add by Eric
+    # Merge the code to match PR#6446
+    def disable_service_warmrestart(self):
+        for service in self.service_list:
+            self.duthost.shell('sudo config warm_restart disable {}'.format(service))
+    # End
+
     def __restorePrevDockerImage(self):
         """Restore previous docker image.
         """
         for service_name, data in self.service_data.items():
             if data['image_path_on_dut'] is None:
-                self.duthost.shell('sudo config warm_restart disable {}'.format(service_name))
+                # Modify by Eric
+                # Merge the code to match PR#6446
+                #self.duthost.shell('sudo config warm_restart disable {}'.format(service_name))
+                # End
                 continue
 
             #  We don't use sonic-installer rollback-docker CLI here because:
@@ -726,14 +739,25 @@ class AdvancedReboot:
             logger.info('Run the post reboot check script')
             self.__runScript([self.postRebootCheckScript], self.duthost)
 
-        if not self.stayInTargetImage:
-            logger.info('Restoring previous image')
-            if self.rebootType != 'service-warm-restart':
-                self.__restorePrevImage()
-            else:
+        # Modify by Eric
+        # Merge the code to match PR#6446
+        #if not self.stayInTargetImage:
+        #    logger.info('Restoring previous image')
+        #    if self.rebootType != 'service-warm-restart':
+        #        self.__restorePrevImage()
+        #    else:
+        if self.rebootType != 'service-warm-restart' and not self.stayInTargetImage:
+            self.__restorePrevImage()
+
+        if self.rebootType == 'service-warm-restart':
+            self.disable_service_warmrestart()
+            if not self.stayInTargetImage:
                 self.__restorePrevDockerImage()
-        else:
+        #else:
+
+        if self.stayInTargetImage:
             logger.info('Stay in new image')
+        # End
 
 @pytest.fixture
 def get_advanced_reboot(request, duthosts, enum_rand_one_per_hwsku_frontend_hostname, ptfhost, localhost, tbinfo, creds):

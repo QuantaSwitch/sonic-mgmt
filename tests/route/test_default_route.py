@@ -23,6 +23,11 @@ def get_upstream_neigh_type(topo):
         return 't2'
     elif 't2' in topo:
         return 't3'
+    # Add by Eric
+    # Merge the code to match PR#6421
+    elif 'm0' in topo:
+        return 'm1'
+    # End
     else:
         return None
 

@@ -10,9 +10,9 @@ BASE_MAC_PREFIX = "00:00:01"
 
 def clear_dut_arp_cache(duthost, ns_option = None):
     logger.info("Clearing {} neighbor table".format(duthost.hostname))
-    arp_flush_cmd = "ip -stats neigh flush all"
+    arp_flush_cmd = "sudo ip -stats neigh flush all"
     if ns_option:
-        arp_flush_cmd = "ip -stats {} neigh flush all".format(ns_option)
+        arp_flush_cmd = "sudo ip -stats {} neigh flush all".format(ns_option)
     duthost.shell(arp_flush_cmd)
 
 def get_po(mg_facts, intf):
