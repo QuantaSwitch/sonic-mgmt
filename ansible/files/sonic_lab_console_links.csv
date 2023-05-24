@@ -1,4 +1,4 @@
 StartDevice,StartPort,EndDevice,Console_type,Proxy
-Testbedconsole,2002,str-ix7-100,ssh,root
+Testbedconsole,2002,T7032-IX7D,ssh,root
 Testbedconsole,2003,str-7260-11,ssh,root
 Testbedconsole,2004,str-7260-10,ssh,root

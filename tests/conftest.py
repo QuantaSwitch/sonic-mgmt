@@ -1006,6 +1006,7 @@ def get_testbed_metadata(request):
     folder = 'metadata'
     filepath = os.path.join(folder, tbname + '.json')
     metadata = None
+    logging.info("filepath={}.".format(filepath))
 
     try:
         with open(filepath, 'r') as yf:
@@ -1117,6 +1118,7 @@ def generate_dut_feature_list(request, duts_selected, asics_selected):
     or restarted.
     """
     meta = get_testbed_metadata(request)
+    logging.info("meta={}.".format(meta))
     tuple_list = []
 
     if meta is None:
@@ -1128,6 +1130,8 @@ def generate_dut_feature_list(request, duts_selected, asics_selected):
         if len(asics_selected):
             for a_asic in asics_selected[a_dut_index]:
                 # Create tuple of dut and asic index
+                logging.info("a_dut={}.".format(a_dut))
+                logging.info("meta[a_dut]={}.".format(meta[a_dut]))
                 if "features" in meta[a_dut]:
                     for a_feature in meta[a_dut]["features"].keys():
                         if a_feature not in skip_feature_list:

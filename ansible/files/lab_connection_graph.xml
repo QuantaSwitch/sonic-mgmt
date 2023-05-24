@@ -1,50 +1,50 @@
 <LabConnectionGraph>
   <PhysicalNetworkGraphDeclaration>
     <Devices>
-      <Device Hostname="str-ix7-100" HwSku="Quanta-IX7-BWDE-32X" Type="DevSonic"/>
+      <Device Hostname="T7032-IX7" HwSku="Quanta-IX7D-32X" Type="DevSonic"/>
       <Device Hostname="str-7260-10" HwSku="Quanta-IX7-32X" Type="FanoutLeaf"/>
       <Device Hostname="str-7260-11" HwSku="Quanta-IX8C-56X" Type="FanoutRoot"/>
       <Device Hostname="str-acs-serv-01" HwSku="TestServ" Type="Server"/>
     </Devices>
     <DeviceInterfaceLinks>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet0" StartDevice="str-ix7-100" StartPort="Ethernet0"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet4" StartDevice="str-ix7-100" StartPort="Ethernet4"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet8" StartDevice="str-ix7-100" StartPort="Ethernet8"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet12" StartDevice="str-ix7-100" StartPort="Ethernet12"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet16" StartDevice="str-ix7-100" StartPort="Ethernet16"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet20" StartDevice="str-ix7-100" StartPort="Ethernet20"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet24" StartDevice="str-ix7-100" StartPort="Ethernet24"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet28" StartDevice="str-ix7-100" StartPort="Ethernet28"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet32" StartDevice="str-ix7-100" StartPort="Ethernet32"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet36" StartDevice="str-ix7-100" StartPort="Ethernet36"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet40" StartDevice="str-ix7-100" StartPort="Ethernet40"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet44" StartDevice="str-ix7-100" StartPort="Ethernet44"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet48" StartDevice="str-ix7-100" StartPort="Ethernet48"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet52" StartDevice="str-ix7-100" StartPort="Ethernet52"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet56" StartDevice="str-ix7-100" StartPort="Ethernet56"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet60" StartDevice="str-ix7-100" StartPort="Ethernet60"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet64" StartDevice="str-ix7-100" StartPort="Ethernet64"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet68" StartDevice="str-ix7-100" StartPort="Ethernet68"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet72" StartDevice="str-ix7-100" StartPort="Ethernet72"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet76" StartDevice="str-ix7-100" StartPort="Ethernet76"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet80" StartDevice="str-ix7-100" StartPort="Ethernet80"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet84" StartDevice="str-ix7-100" StartPort="Ethernet84"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet88" StartDevice="str-ix7-100" StartPort="Ethernet88"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet92" StartDevice="str-ix7-100" StartPort="Ethernet92"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet96" StartDevice="str-ix7-100" StartPort="Ethernet96"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet100" StartDevice="str-ix7-100" StartPort="Ethernet100"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet104" StartDevice="str-ix7-100" StartPort="Ethernet104"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet108" StartDevice="str-ix7-100" StartPort="Ethernet108"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet112" StartDevice="str-ix7-100" StartPort="Ethernet112"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet116" StartDevice="str-ix7-100" StartPort="Ethernet116"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet120" StartDevice="str-ix7-100" StartPort="Ethernet120"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-11" EndPort="Ethernet76" StartDevice="str-ix7-100" StartPort="Ethernet124"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet0" StartDevice="T7032-IX7" StartPort="Ethernet0"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet4" StartDevice="T7032-IX7" StartPort="Ethernet4"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet8" StartDevice="T7032-IX7" StartPort="Ethernet8"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet12" StartDevice="T7032-IX7" StartPort="Ethernet12"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet16" StartDevice="T7032-IX7" StartPort="Ethernet16"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet20" StartDevice="T7032-IX7" StartPort="Ethernet20"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet24" StartDevice="T7032-IX7" StartPort="Ethernet24"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet28" StartDevice="T7032-IX7" StartPort="Ethernet28"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet32" StartDevice="T7032-IX7" StartPort="Ethernet32"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet36" StartDevice="T7032-IX7" StartPort="Ethernet36"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet40" StartDevice="T7032-IX7" StartPort="Ethernet40"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet44" StartDevice="T7032-IX7" StartPort="Ethernet44"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet48" StartDevice="T7032-IX7" StartPort="Ethernet48"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet52" StartDevice="T7032-IX7" StartPort="Ethernet52"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet56" StartDevice="T7032-IX7" StartPort="Ethernet56"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet60" StartDevice="T7032-IX7" StartPort="Ethernet60"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet64" StartDevice="T7032-IX7" StartPort="Ethernet64"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet68" StartDevice="T7032-IX7" StartPort="Ethernet68"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet72" StartDevice="T7032-IX7" StartPort="Ethernet72"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet76" StartDevice="T7032-IX7" StartPort="Ethernet76"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet80" StartDevice="T7032-IX7" StartPort="Ethernet80"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet84" StartDevice="T7032-IX7" StartPort="Ethernet84"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet88" StartDevice="T7032-IX7" StartPort="Ethernet88"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet92" StartDevice="T7032-IX7" StartPort="Ethernet92"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet96" StartDevice="T7032-IX7" StartPort="Ethernet96"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet100" StartDevice="T7032-IX7" StartPort="Ethernet100"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet104" StartDevice="T7032-IX7" StartPort="Ethernet104"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet108" StartDevice="T7032-IX7" StartPort="Ethernet108"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet112" StartDevice="T7032-IX7" StartPort="Ethernet112"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet116" StartDevice="T7032-IX7" StartPort="Ethernet116"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet120" StartDevice="T7032-IX7" StartPort="Ethernet120"/>
+      <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-11" EndPort="Ethernet76" StartDevice="T7032-IX7" StartPort="Ethernet124"/>
       <DeviceInterfaceLink BandWidth="100000" EndDevice="str-acs-serv-01" EndPort="ens33np0" StartDevice="str-7260-11" StartPort="Ethernet48"/>
       <DeviceInterfaceLink BandWidth="100000" EndDevice="str-7260-10" EndPort="Ethernet124" StartDevice="str-7260-11" StartPort="Ethernet72"/>
     </DeviceInterfaceLinks>
   </PhysicalNetworkGraphDeclaration>
   <DataPlaneGraph>
-    <DevicesL3Info Hostname="str-ix7-100">
+    <DevicesL3Info Hostname="T7032-IX7">
       <ManagementIPInterface Name="ManagementIp" Prefix="172.16.32.188/24"/>
     </DevicesL3Info>
     <DevicesL3Info Hostname="str-7260-10">
@@ -101,15 +101,14 @@
       <DeviceConsoleInfo Hostname="Testbedconsole" HwSku="Cisco" ManagementIp="172.16.32.240" Protocol="ssh" Type="ConsoleServer"/>
     </DevicesConsoleInfo>
     <ConsoleLinksInfo>
-      <ConsoleLinkInfo Console_type="ssh" EndDevice="str-ix7-100" Proxy="root" StartDevice="Testbedconsole" StartPort="2002"/>
+      <ConsoleLinkInfo Console_type="ssh" EndDevice="T7032-IX7D" Proxy="root" StartDevice="Testbedconsole" StartPort="2002"/>
       <ConsoleLinkInfo Console_type="ssh" EndDevice="str-7260-11" Proxy="root" StartDevice="Testbedconsole" StartPort="2003"/>
       <ConsoleLinkInfo Console_type="ssh" EndDevice="str-7260-10" Proxy="root" StartDevice="Testbedconsole" StartPort="2004"/>
     </ConsoleLinksInfo>
   </ConsoleGraphDeclaration>
   <PowerControlGraphDeclaration>
     <DevicesPowerControlInfo>
-      <DevicePowerControlInfo Hostname="pdu-1" HwSku="Apc" ManagementIp="192.168.9.2" Protocol="snmp" Type="Pdu"/>
-      <DevicePowerControlInfo Hostname="pdu-2" HwSku="Sentry" ManagementIp="192.168.9.3" Protocol="snmp" Type="Pdu"/>
+      <DevicePowerControlInfo Hostname="pdu-1" HwSku="SmartPower" ManagementIp="10.250.0.212" Protocol="snmp" Type="Pdu"/>
     </DevicesPowerControlInfo>
     <PowerControlLinksInfo>
       <PowerControlLinkInfo EndDevice="str-msn2700-01" EndPort="PSU1" StartDevice="pdu-1" StartPort="1"/>
@@ -120,6 +119,8 @@
       <PowerControlLinkInfo EndDevice="str-7260-11" EndPort="PSU2" StartDevice="pdu-2" StartPort="3"/>
       <PowerControlLinkInfo EndDevice="str-acs-serv-01" EndPort="PSU1" StartDevice="pdu-2" StartPort="2"/>
       <PowerControlLinkInfo EndDevice="str-acs-serv-01" EndPort="PSU2" StartDevice="pdu-2" StartPort="4"/>
+      <PowerControlLinkInfo EndDevice="T7032-IX7" EndPort="PSU1" StartDevice="pdu-1" StartPort="1"/>
+      <PowerControlLinkInfo EndDevice="T7032-IX7" EndPort="PSU2" StartDevice="pdu-1" StartPort="2"/>
     </PowerControlLinksInfo>
   </PowerControlGraphDeclaration>
 </LabConnectionGraph>

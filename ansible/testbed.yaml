@@ -206,7 +206,7 @@
   server: server_1
   vm_base: VM0100
   dut:
-    - str-ix7-100
+    - T7032-IX7
   inv_name: lab
   auto_recover: 'True'
   comment: Tests Quanta IX7
@@ -221,7 +221,7 @@
   server: server_1
   vm_base: VM0100
   dut:
-    - str-ix7-100
+    - T7032-IX7
   inv_name: lab
   auto_recover: 'True'
   comment: Tests Quanta IX7
@@ -236,7 +236,7 @@
   server: server_1
   vm_base: VM0100
   dut:
-    - str-ix7-100c
+    - T7032-IX7
   inv_name: lab
   auto_recover: 'True'
   comment: Tests Quanta pft

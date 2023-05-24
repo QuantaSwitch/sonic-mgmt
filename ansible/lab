@@ -56,7 +56,8 @@ sonic_ix8c_25:
 
 sonic_ix7_100:
   vars:
-    hwsku: "Quanta-IX7-BWDE-32X"
+    #hwsku: "Quanta-IX7-BWDE-32X"
+    hwsku: "Quanta-IX7D-32X"
     iface_speed: 100000
   hosts:
     T7032-IX7:
