@@ -170,7 +170,7 @@ def get_healthy_psu_num(duthost):
         fields = iter.split()
         if fields[2] == 'OK':
             healthy_psus += 1
-
+ 
     return healthy_psus
 
 
@@ -237,7 +237,10 @@ def test_turn_on_off_psu_and_check_psustatus(duthosts, enum_rand_one_per_hwsku_h
 
     psu_line_pattern = get_dut_psu_line_pattern(duthost)
 
-    psu_num = get_healthy_psu_num(duthost)
+    # Modify by Eric
+    #psu_num = get_healthy_psu_num(duthost)
+    psu_num = get_psu_num(duthost)
+    # End
     pytest_require(psu_num >= 2, "At least 2 PSUs required for rest of the testing in this case")
 
     logging.info("Create PSU controller for testing")

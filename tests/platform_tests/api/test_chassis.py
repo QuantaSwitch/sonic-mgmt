@@ -91,6 +91,7 @@ class TestChassisApi(PlatformApiTestBase):
         if duthost.facts.get("chassis"):
             expected_value = duthost.facts.get("chassis").get(key)
 
+        logging.info("expected_value={}.".format(expected_value))
         pytest_assert(expected_value is not None,
                       "Unable to get expected value for '{}' from platform.json file".format(key))
 
@@ -123,6 +124,7 @@ class TestChassisApi(PlatformApiTestBase):
     def test_get_name(self, duthosts, enum_rand_one_per_hwsku_hostname, localhost, platform_api_conn):
         duthost = duthosts[enum_rand_one_per_hwsku_hostname]
         name = chassis.get_name(platform_api_conn)
+        logging.info("name={}.".format(name))
         pytest_assert(name is not None, "Unable to retrieve chassis name")
         pytest_assert(isinstance(name, STRING_TYPE), "Chassis name appears incorrect")
         self.compare_value_with_platform_facts(duthost, 'name', name)

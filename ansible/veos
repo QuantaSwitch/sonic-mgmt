@@ -77,6 +77,48 @@ vms_1:
       ansible_host: 172.16.32.11
     VM0110:
       ansible_host: 172.16.32.12
+    VM0111:
+      ansible_host: 172.16.32.13
+    VM0112:
+      ansible_host: 172.16.32.14
+    VM0113:
+      ansible_host: 172.16.32.15
+    VM0114:
+      ansible_host: 172.16.32.16
+    VM0115:
+      ansible_host: 172.16.32.17
+    VM0116:
+      ansible_host: 172.16.32.18
+    VM0117:
+      ansible_host: 172.16.32.19
+    VM0118:
+      ansible_host: 172.16.32.20
+    VM0119:
+      ansible_host: 172.16.32.21
+    VM0120:
+      ansible_host: 172.16.32.22
+    VM0121:
+      ansible_host: 172.16.32.23
+    VM0122:
+      ansible_host: 172.16.32.24
+    VM0123:
+      ansible_host: 172.16.32.25
+    VM0124:
+      ansible_host: 172.16.32.26
+    VM0125:
+      ansible_host: 172.16.32.27
+    VM0126:
+      ansible_host: 172.16.32.28
+    VM0127:
+      ansible_host: 172.16.32.29
+    VM0128:
+      ansible_host: 172.16.32.30
+    VM0129:
+      ansible_host: 172.16.32.31
+    VM0130:
+      ansible_host: 172.16.32.32
+    VM0131:
+      ansible_host: 172.16.32.33
 
 vms_2:
   hosts:

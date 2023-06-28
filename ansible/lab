@@ -65,8 +65,8 @@ sonic_ix7_100:
       ansible_ssh_user: admin
       ansible_ssh_pass: YourPaSsWoRd
       num_asics: 1
-      model: 1IX7U7Z0ST5
-      serial: QTFCUW8270019
+      model: 1IX7U7Z0002
+      serial: QTFCUW0190024
       base_mac: D8:C4:97:61:FF:69
       syseeprom_info:
         "0x21": "T7032-IX7"
