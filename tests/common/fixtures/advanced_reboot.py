@@ -507,10 +507,7 @@ class AdvancedReboot:
                 thread.join(timeout=ptf_timeout, suppress_exception=True)
                 self.ptfhost.shell("pkill -f 'ptftests advanced-reboot.ReloadTest'", module_ignore_errors=True)
                 # the thread might still be running, and to catch any exceptions after pkill allow 10s to join
-                # Modify by Eric
-                # Change timeout from 10 to 20
-                thread.join(timeout=20)
-                # End
+                thread.join(timeout=10)
                 self.__verifyRebootOper(rebootOper)
                 if self.postboot_setup:
                     self.postboot_setup()

@@ -1509,10 +1509,7 @@ class TestVrfDeletion():
         gen_vrf_neigh_file('Vrf2', ptfhost, render_file="/tmp/vrf2_neigh.txt")
 
         duthost.shell("config vrf del Vrf1")
-        # Modify by Eric
-        # Change time from 5 to 10
-        time.sleep(10)
-        # End
+        time.sleep(5)
 
         # -------- Testing ----------
         yield

@@ -222,10 +222,7 @@ class PreTestVerify(object):
         self._checkArpEntryExist()
         logger.info("Clear all FDB entries")
         self.duthost.shell("sonic-clear fdb all")
-        # Modify by Eric
-        # sleep time from 5 to 20
-        time.sleep(20)
-        # End
+        time.sleep(5)
         self._checkFdbEntryMiss()
         return self.arp_entry
 
