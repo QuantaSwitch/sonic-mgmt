@@ -8,7 +8,8 @@ all:
           children:
             #sonic_ix8c_25:
             #sonic_ix1b_100:
-            sonic_ix7_100:
+            #sonic_ix7_100:
+            sonic_ix8d_25:
             #sonic_sn2700_40:
             #sonic_s6000:
             #sonic_s6100:
@@ -20,10 +21,10 @@ all:
         fanout:
           hosts:
             str-7260-10:
-              ansible_host: 172.16.32.213
+              ansible_host: 10.250.0.13
               os: sonic
             str-7260-11:
-              ansible_host: 172.16.32.212
+              ansible_host: 10.250.0.234
               os: sonic
             str-msn2700-02:
               ansible_host: 10.251.0.235
@@ -31,11 +32,11 @@ all:
     ptf:
       hosts:
         ptf_ptf1:
-          ansible_host: 172.16.32.180
+          ansible_host: 10.250.0.188
           ansible_ssh_user: root
           ansible_ssh_pass: root
         ptf_vms1-1:
-          ansible_host: 172.16.32.178
+          ansible_host: 10.250.0.178
           ansible_ssh_user: root
           ansible_ssh_pass: root
         ptf_vms6-1:
@@ -43,15 +44,23 @@ all:
           ansible_ssh_user: root
           ansible_ssh_pass: root
 
-sonic_ix8c_25:
+sonic_ix8d_25:
   vars:
-    hwsku: "Quanta-IX8C-56X"
+    hwsku: "Quanta-IX8D-56X"
     iface_speed: 25000
   hosts:
-    str-ix8c-25: 
-      ansible_host: 172.16.32.188
+    T4048-IX8D: 
+      ansible_host: 10.250.0.188
       ansible_ssh_user: admin
       ansible_ssh_pass: YourPaSsWoRd
+
+
+#    pdu:
+#      hosts:
+#        pdu-1:
+#          ansible_host: 10.250.0.212
+#          protocol: snmp
+
 
 
 sonic_ix7_100:
@@ -61,7 +70,7 @@ sonic_ix7_100:
     iface_speed: 100000
   hosts:
     T7032-IX7:
-      ansible_host: 172.16.32.188
+      ansible_host: 10.250.0.188
       ansible_ssh_user: admin
       ansible_ssh_pass: YourPaSsWoRd
       num_asics: 1
@@ -85,6 +94,8 @@ sonic_ix7_100:
         "0x2E": "3.0.2.0"
         "0xFD": "0x49 0x58 0x37 0x20 0x46 0x42"
         "0xFE": "0x6E7CE401"
+#      pdu_host: pdu-1
+
 
 sonic_sn2700_40:
   vars:

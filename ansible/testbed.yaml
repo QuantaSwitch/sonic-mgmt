@@ -196,27 +196,27 @@
   auto_recover: 'True'
   comment: Test ptf ANVL SONIC VM
 
-- conf-name: vms-ix1b-t0
+- conf-name: vms-ix1b-t0-56
   group-name: vms1-1
-  topo: t0
+  topo: t0-56
   ptf_image_name: docker-ptf-sai-mlnx
   ptf: ptf_vms1-1
-  ptf_ip: 172.16.32.178/24
+  ptf_ip: 10.250.0.178/24
   ptf_ipv6:
   server: server_1
   vm_base: VM0100
   dut:
-    - T7032-IX7
+    - T4048-IX8D
   inv_name: lab
   auto_recover: 'True'
-  comment: Tests Quanta IX7
+  comment: Tests Quanta IX8
 
 - conf-name: vms-ix1b-t1
   group-name: vms1-1
   topo: t1
   ptf_image_name: docker-ptf-sai-mlnx
   ptf: ptf_vms1-1
-  ptf_ip: 172.16.32.178/24
+  ptf_ip: 10.250.0.178/24
   ptf_ipv6:
   server: server_1
   vm_base: VM0100

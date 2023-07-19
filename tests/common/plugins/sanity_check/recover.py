@@ -32,9 +32,23 @@ def __recover_interfaces(dut, fanouthosts, result, wait_time):
         logging.warning("Restoring port: {}".format(port))
 
         pn = str(port).lower()
-        if 'portchannel' in pn or 'vlan' in pn:
+        # Modify by Eric
+        if 'vlan' in pn:
+            logging.info("port={}.".format(port))
+            asic = dut.get_port_asic_instance("Ethernet0")
+            dut.asic_instance(asic.asic_index).shutdown_interface("Ethernet0")
+            wait(wait_time, msg="Wait {} seconds for interface(s) to shutdown.".format(5))
+            dut.asic_instance(asic.asic_index).startup_interface("Ethernet0")
+            wait(wait_time, msg="Wait {} seconds for interface(s) to startup.".format(5))
+            continue
+
+        if 'portchannel' in pn:
             action = 'config_reload'
             continue
+        #if 'portchannel' in pn or 'vlan' in pn:
+        #    action = 'config_reload'
+        #    continue
+        # End
 
         fanout, fanout_port = fanout_switch_port_lookup(fanouthosts, dut.hostname, port)
         if fanout and fanout_port:

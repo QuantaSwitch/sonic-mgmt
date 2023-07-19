@@ -228,6 +228,13 @@ def get_port_alias_to_name_map(hwsku, asic_name=None):
         elif hwsku in ["Wistron_sw_to3200k_32x100","Wistron_sw_to3200k"]:
             for i in range(0, 256, 8):
                 port_alias_to_name_map["Ethernet%d" % i] = "Ethernet%d" % i
+        elif hwsku == "Quanta-IX8D-56X":
+            for i in range(0, 48):
+                port_alias_to_name_map["Ethernet%d" % i] = "Ethernet%d" % i
+
+            for i in range(48, 80, 4):
+                port_alias_to_name_map["Ethernet%d" % i] = "Ethernet%d" % i
+
         else:
             for i in range(0, 128, 4):
                 port_alias_to_name_map["Ethernet%d" % i] = "Ethernet%d" % i
