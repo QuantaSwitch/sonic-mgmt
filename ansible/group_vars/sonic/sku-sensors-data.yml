@@ -269,6 +269,134 @@ sensors_checks:
 
     sensor_skip_per_version: {}
 
+  x86_64-quanta_ix8_dnv-r0:
+    alarms:
+      fan: []
+      power: []
+      temp:
+      - coretemp-isa-0000/Core 2/temp4_crit_alarm
+      - coretemp-isa-0000/Core 6/temp8_crit_alarm
+      - coretemp-isa-0000/Core 8/temp10_crit_alarm
+      - coretemp-isa-0000/Core 12/temp14_crit_alarm
+    compares:
+      fan: []
+      power:
+      - - quanta_hwmon_ipmi-isa-0000/PSU1_POWER_IN/power40_input
+        - quanta_hwmon_ipmi-isa-0000/PSU1_POWER_IN/power40_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU1_POWER_OUT/power41_input
+        - quanta_hwmon_ipmi-isa-0000/PSU1_POWER_OUT/power41_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU2_POWER_IN/power50_input
+        - quanta_hwmon_ipmi-isa-0000/PSU2_POWER_IN/power50_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU2_POWER_OUT/power51_input
+        - quanta_hwmon_ipmi-isa-0000/PSU2_POWER_OUT/power51_crit
+      temp:
+      - - coretemp-isa-0000/Core 2/temp4_input
+        - coretemp-isa-0000/Core 2/temp4_crit
+      - - coretemp-isa-0000/Core 6/temp8_input
+        - coretemp-isa-0000/Core 6/temp8_crit
+      - - coretemp-isa-0000/Core 8/temp10_input
+        - coretemp-isa-0000/Core 8/temp10_crit
+      - - coretemp-isa-0000/Core 12/temp14_input
+        - coretemp-isa-0000/Core 12/temp14_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP1/temp42_input
+        - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP1/temp42_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP2/temp43_input
+        - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP2/temp43_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP3/temp44_input
+        - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP3/temp44_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP1/temp52_input
+        - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP1/temp52_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP2/temp53_input
+        - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP2/temp53_crit
+      - - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP3/temp54_input
+        - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP3/temp54_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_0/temp67_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_0/temp67_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_1/temp68_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_1/temp68_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_2/temp69_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_2/temp69_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_3/temp70_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_3/temp70_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_4/temp71_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_4/temp71_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_5/temp72_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_5/temp72_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_6/temp73_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_6/temp73_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_CPU/temp74_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_CPU/temp74_crit
+      - - quanta_hwmon_ipmi-isa-0000/Temp_DIMM0/temp75_input
+        - quanta_hwmon_ipmi-isa-0000/Temp_DIMM0/temp75_crit
+    non_zero:
+      fan:
+       - quanta_hwmon_ipmi-isa-0000/Fan_SYS_1_1/fan20_input
+       - quanta_hwmon_ipmi-isa-0000/Fan_SYS_2_1/fan22_input
+       - quanta_hwmon_ipmi-isa-0000/Fan_SYS_3_1/fan24_input
+       - quanta_hwmon_ipmi-isa-0000/Fan_SYS_4_1/fan26_input
+       - quanta_hwmon_ipmi-isa-0000/Fan_SYS_5_1/fan28_input
+       - quanta_hwmon_ipmi-isa-0000/Fan_SYS_6_1/fan30_input
+       - quanta_hwmon_ipmi-isa-0000/PSU1_Fan/fan39_input
+       - quanta_hwmon_ipmi-isa-0000/PSU2_Fan/fan49_input
+      power:
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_STBY_2/in100_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_SUS/in101_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V_CPU_BAT/in102_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P5V/in103_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P5V_STBY_1/in104_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_PSU_P12VSB/in105_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_PVCCP/in106_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_PVCCSRAM/in107_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_PVCC_REF/in108_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_PVNN_SUS/in109_input
+       - quanta_hwmon_ipmi-isa-0000/PSU1_VOLTAGE_IN/in45_input
+       - quanta_hwmon_ipmi-isa-0000/PSU1_VOLTAGE_OUT/in46_input
+       - quanta_hwmon_ipmi-isa-0000/PSU2_VOLTAGE_IN/in55_input
+       - quanta_hwmon_ipmi-isa-0000/PSU2_VOLTAGE_OUT/in56_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P0V8A/in77_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P0V9SW/in78_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P12V/in79_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V05_SUS/in80_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V15_STBY/in81_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V2_0/in82_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V2_STBY/in83_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V2_STBY_0/in84_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V2_SUS/in85_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V8_0/in86_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V8_CPLD/in87_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V8_STBY/in88_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V8_STBY_0/in89_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P1V8_SUS/in90_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P2V5_STBY/in91_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P2V6_VPP/in92_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3/in93_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_0/in94_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_1/in95_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_CPLD/in96_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_SFP_0/in97_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_SFP_1/in98_input
+       - quanta_hwmon_ipmi-isa-0000/Volt_P3V3_STBY/in99_input
+      temp:
+       - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP1/temp42_input
+       - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP2/temp43_input
+       - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP3/temp44_input
+       - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP1/temp52_input
+       - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP2/temp53_input
+       - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP3/temp54_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_0/temp67_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_1/temp68_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_2/temp69_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_3/temp70_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_4/temp71_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_5/temp72_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_6/temp73_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_CPU/temp74_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_DIMM0/temp75_input
+
+    psu_skips: {}
+
+    sensor_skip_per_version: {}
+
   x86_64-dell_s6100_c2538-r0:
     alarms:
       fan:
