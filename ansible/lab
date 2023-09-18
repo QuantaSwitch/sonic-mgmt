@@ -53,6 +53,27 @@ sonic_ix8d_25:
       ansible_host: 10.250.0.188
       ansible_ssh_user: admin
       ansible_ssh_pass: YourPaSsWoRd
+      num_asics: 1
+      model: 1IX8UZZ0007
+      serial: QTFCU30400035
+      base_mac: B4:A9:FC:BB:A0:B0
+      syseeprom_info:
+        "0x21": "T4048-IX8D"
+        "0x22": "1IX8UZZ0007"
+        "0x23": "QTFCU30400035"
+        "0x24": "B4:A9:FC:BB:A0:B0"
+        "0x25": "07/23/2020 00:00:00"
+        "0x26": "1"
+        "0x27": "C3F"
+        "0x28": "Rangeley3D8G"
+        "0x29": "2017.11.00.14"
+        "0x2A": "85"
+        "0x2B": "QSMC"
+        "0x2C": "CN"
+        "0x2D": "QCT"
+        "0x2E": "3.0.1.0"
+        "0xFD": "0x51 0x75 0x61 0x6E 0x74 0x61 0x20 0x49 0x58 0x38 0x44 0x20 0x42 0x46"
+        "0xFE": "0xA737E875"
 
 
 #    pdu:
