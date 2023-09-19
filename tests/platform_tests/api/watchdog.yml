@@ -24,6 +24,13 @@ x86_64-quanta_.*_rglbmc-r0:
     greater_timeout: 20
     too_big_timeout: 1024
 
+# Quanta DNV WDAT watchdog
+x86_64-quanta_.*_dnv-r0:
+  default:
+    valid_timeout: 10
+    greater_timeout: 20
+    too_big_timeout: 4295000
+
 # Mellanox watchdog type 1
 x86_64-mlnx_msn2.*-r0:
   default:
