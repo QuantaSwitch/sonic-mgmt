@@ -6,9 +6,10 @@ all:
       children:
         sonic:
           children:
+            sonic_ix7d_100:
             #sonic_ix8c_25:
             #sonic_ix1b_100:
-            sonic_ix7_100:
+            #sonic_ix7_100:
             #sonic_sn2700_40:
             #sonic_s6000:
             #sonic_s6100:
@@ -85,6 +86,37 @@ sonic_ix7_100:
         "0x2E": "3.0.2.0"
         "0xFD": "0x49 0x58 0x37 0x20 0x46 0x42"
         "0xFE": "0x6E7CE401"
+
+sonic_ix7d_100:
+  vars:
+    hwsku: "Quanta-IX7D-32X"
+    iface_speed: 100000
+  hosts:
+    T7032-IX7D:
+      ansible_host: 172.16.32.188
+      ansible_ssh_user: admin
+      ansible_ssh_pass: YourPaSsWoRd
+      num_asics: 1
+      model: 1IX7U7Z0002
+      serial: QTFCUW0190024
+      base_mac: B4:A9:FC:86:23:09
+      syseeprom_info:
+        "0x21": "T7032-IX7D"
+        "0x22": "1IX7U7Z0002"
+        "0x23": "QTFCUW0190024"
+        "0x24": "B4:A9:FC:86:23:09"
+        "0x25": "04/17/2020 00:00:00"
+        "0x26": "1"
+        "0x27": "B3G"
+        "0x28": "Rangeley3D8G"
+        "0x29": "2017.11.00.14"
+        "0x2A": "133"
+        "0x2B": "QSMC"
+        "0x2C": "CN"
+        "0x2D": "QCT"
+        "0x2E": "1.3.1.0"
+        "0xFD": "0x51 0x75 0x61 0x6E 0x74 0x61 0x20 0x49 0x58 0x37 0x44 0x20 0x46 0x42"
+        "0xFE": "0x94C2BD42"
 
 sonic_sn2700_40:
   vars:
