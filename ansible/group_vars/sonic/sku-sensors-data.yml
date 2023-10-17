@@ -4,10 +4,10 @@ sensors_checks:
       fan: []
       power: []
       temp:
-      - coretemp-isa-0000/Core 8/temp_crit_alarm
-      - coretemp-isa-0000/Core 12/temp_crit_alarm
-      - coretemp-isa-0000/Core 2/temp_crit_alarm
-      - coretemp-isa-0000/Core 6/temp_crit_alarm
+      - coretemp-isa-0000/Core 2/temp4_crit_alarm
+      - coretemp-isa-0000/Core 6/temp8_crit_alarm
+      - coretemp-isa-0000/Core 8/temp10_crit_alarm
+      - coretemp-isa-0000/Core 12/temp14_crit_alarm
     compares:
       fan: []
       power:
@@ -20,14 +20,14 @@ sensors_checks:
       - - quanta_hwmon_ipmi-isa-0000/PSU2_POWER_OUT/power51_input
         - quanta_hwmon_ipmi-isa-0000/PSU2_POWER_OUT/power51_crit
       temp:
-      - - coretemp-isa-0000/Core 8/temp_input
-        - coretemp-isa-0000/Core 8/temp_crit
-      - - coretemp-isa-0000/Core 12/temp_input
-        - coretemp-isa-0000/Core 12/temp_crit
-      - - coretemp-isa-0000/Core 2/temp_input
-        - coretemp-isa-0000/Core 2/temp_crit
-      - - coretemp-isa-0000/Core 6/temp_input
-        - coretemp-isa-0000/Core 6/temp_crit
+      - - coretemp-isa-0000/Core 2/temp4_input
+        - coretemp-isa-0000/Core 2/temp4_crit
+      - - coretemp-isa-0000/Core 6/temp8_input
+        - coretemp-isa-0000/Core 6/temp8_crit
+      - - coretemp-isa-0000/Core 8/temp10_input
+        - coretemp-isa-0000/Core 8/temp10_crit
+      - - coretemp-isa-0000/Core 12/temp14_input
+        - coretemp-isa-0000/Core 12/temp14_crit
       - - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP1/temp42_input
         - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP1/temp42_crit
       - - quanta_hwmon_ipmi-isa-0000/PSU1_TEMP2/temp43_input
@@ -58,8 +58,6 @@ sensors_checks:
         - quanta_hwmon_ipmi-isa-0000/Temp_CPU/temp74_crit
       - - quanta_hwmon_ipmi-isa-0000/Temp_DIMM0/temp75_input
         - quanta_hwmon_ipmi-isa-0000/Temp_DIMM0/temp75_crit
-      - - quanta_hwmon_ipmi-isa-0000/Temp_DIMM1/temp76_input
-        - quanta_hwmon_ipmi-isa-0000/Temp_DIMM1/temp76_crit
     non_zero:
       fan:
        - quanta_hwmon_ipmi-isa-0000/Fan_SYS_1_1/fan20_input
@@ -117,14 +115,13 @@ sensors_checks:
        - quanta_hwmon_ipmi-isa-0000/PSU2_TEMP3/temp54_input
        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_0/temp67_input
        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_1/temp68_input
-       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_2/temp79_input
+       - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_2/temp69_input
        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_3/temp70_input
        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_4/temp71_input
        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_5/temp72_input
        - quanta_hwmon_ipmi-isa-0000/Temp_Ambient_6/temp73_input
        - quanta_hwmon_ipmi-isa-0000/Temp_CPU/temp74_input
        - quanta_hwmon_ipmi-isa-0000/Temp_DIMM0/temp75_input
-       - quanta_hwmon_ipmi-isa-0000/Temp_DIMM1/temp76_input
 
     psu_skips: {}
 
