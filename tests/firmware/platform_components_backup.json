@@ -1,16 +1,17 @@
 {
     "chassis": {
-        "T7032-IX7-BDE": {
+        "T4048-IX8D": {
             "component": {
                 "BIOS": { },
                 "BMC": { },
+                "UART_CPLD": { },
                 "BOOT_CPLD": { },
                 "FAN_CPLD": { },
                 "MB_CPLD_IO_1": { },
                 "MB_CPLD_IO_2": { },
+                "MB_CPLD_IO_3": { },
                 "MB_CPLD_LED_1": { },
-                "MB_CPLD_LED_2": { },
-                "PCIe": { }                
+                "MB_CPLD_LED_2": { }
             }
         }
     }
